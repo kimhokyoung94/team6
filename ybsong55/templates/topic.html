@@ -1,0 +1,21 @@
+{% extends "layouts.html" %}
+{% block body %}
+    <div class="jumbotron text-center">
+    <h1 class="display-4"> TOPIC <br><br> 효율적인 태양광 발전을 위한 통합관리 시스템 </h1>
+    <h2><br><p class="lead">team member : YB Song, Jo, Lim, Kim </p><br></h2>
+    {% if session['is_logged'] %}
+    <h1>wellcome!{{ session['user_name']}}</h1>
+    {% else%}
+    <h1> wellcome visitor :) </h1>
+    {%endif%}
+    </div>
+    <div>프로젝트 목적
+        <p> 태양광 발전 효율 증진 <br> - 아두이노를 활용한 태양광 트래킹 </p>
+        <p> 태양광 발전 모니터링  <br> - 발전량 저하요소 실시간 파악 <br> - 조도량과 발전량 모니터링 </p>
+        <p> 태양광 발전 예방보전 <br> - 관리요소 원격처리 <br> - 발전량/조도량의 변화량을 예측하여 패널 교체 시기 예측 </p>
+    </div>
+    <div class="jumbotron text-center">
+    <hr class="my-4">
+    <a class="btn btn-warning btn-lg" href="/" role="button"> Back to Main </a>
+    </div>
+{% endblock %}

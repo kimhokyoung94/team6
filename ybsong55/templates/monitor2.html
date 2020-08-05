@@ -1,0 +1,134 @@
+{% extends "layouts.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en"> 
+<!-- <html lang="en" style="height: 100%"> --> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <title>부트스트랩 차트그리기</title> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+    <!-- 차트 링크 --> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> 
+    </head> 
+    
+<body>
+    <div class ="text-center">
+        <p> <br> </p>
+        <h1>  Monitoring Temperature for {{session['username']}} </h1>
+        <p><br></p>
+        <h1>  {{session['date']}} data </h1>
+        </div>
+    <p><br><br></p> 
+    <div>
+        <div class ="text-center">
+            <a class="btn btn-outline-warning" href="/monitor" role="button"> 조도 </a>
+            <a class="btn btn-outline-primary" href="/monitor1" role="button"> 습도 </a>
+            <a class="btn btn-outline-danger" href="/monitor2" role="button"> 온도 </a>
+        </div>
+        <p><br></p>
+    </div>
+    <div>
+        <form method="POST" action="/monitor2" onsubmit="return confirm('업데이트 하시겠습니까?')">
+            <div class="select-role">
+                <div class = 'text-center'>
+                    <input type="date" name="date">
+                </div>
+                <p><br><br></p>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                </div>
+                <div class="input-group mb-0">
+                    <input type="submit" class="btn btn-warning btn-lg btn-block" value="업데이트">
+                </div>
+            </div>
+            </form>
+            <!-- <div class ="text-center">
+            <a class="btn btn-dark btn-lg" href="/monitor" role="button".> 업데이트 </a>
+                </div> -->
+    </div>
+    <p><br></p>
+    <div class="container"> 
+        <canvas id="myChart"></canvas> 
+    </div>  
+    
+    <!-- 부트스트랩 --> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous">
+    </script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+        crossorigin="anonymous">
+    </script> 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+    crossorigin="anonymous">
+    </script> 
+    <!-- 차트 --> 
+    <script> 
+        var ctx = document.getElementById('myChart').getContext('2d'); 
+        var chart = new Chart(ctx, { 
+            // 챠트 종류를 선택 
+            type: 'line', 
+            // 챠트를 그릴 데이타 
+            data: { labels: ['0', '2', '4', '6', '8', '10', '12', '14', '16', '18', '20', '22', '24'], 
+            datasets: [{ 
+                label: '온도', 
+                backgroundColor: 'transparent', 
+                borderColor: 'Red', data: {{temp_data}}
+                }] 
+            }, 
+            // 옵션 
+            options: {} }); 
+            </script> 
+            
+        </body> 
+    <body>
+        <p><br><br></p>
+        <div class="jumbotron text-center">
+            <h1 class="display-4">실시간 측정 데이터 표</h1>
+            <!-- <p class="lead">실시간 측정 데이터 표</p> -->
+            <h1>{{session['username']}}</h1>
+            <hr class="my-4">
+             
+              <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    자료 게시판
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>User_id</th>
+                                    <th>Lux</th>
+                                    <th>Temperature</th>
+                                    <th>Humidity</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                              {% for i in m_data %}
+                                <tr>
+                                  <th scope="row">{{i[6]}}</th>
+                                  <td>{{ i[1] }}</td>
+                                  <td>{{ i[2] }}</td>
+                                  <td>{{ i[3] }}</td>
+                                  <td>{{ i[4] }}</td>
+                                  <td>{{ i[5] }}</td>
+                                  
+                                </tr>
+                            {% endfor %}
+                              </tbody>
+                            </table>
+                            </div>
+                            </div>
+                            </div>
+          </div>
+        </html>
+    </body>
+{% endblock %}

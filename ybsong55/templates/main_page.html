@@ -1,0 +1,16 @@
+{% extends "layouts.html" %}
+{% block body %}
+    <div class="jumbotron text-center">
+    <h1 class="display-4">Team 6 <br> "mangement system for photovoltaics" </h1>
+    <h2><br><p class="lead">team member : YB Song, Jo, Lim, Kim </p><br></h2>
+    <!-- <h1>wellcome!{{ session['user_name']}}</h1> -->
+    <hr class="my-4">
+    {%if session['is_logged']%}
+    <h1>wellcome!  {{ session['username']}}</h1>
+    <a class="btn btn-warning btn-lg" href="/monitor" role="button"> Start monitoring!! </a>
+    {%else%}
+    <a class="btn btn-warning btn-lg" href="/login" role="button"> Sign in </a>
+    <a class="btn btn-warning btn-lg" href="/register" role="button"> Sign up </a>
+    {% endif %}
+  </div>
+{% endblock %}
