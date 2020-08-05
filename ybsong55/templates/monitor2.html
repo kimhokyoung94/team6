@@ -74,7 +74,7 @@
             // 챠트를 그릴 데이타 
             data: { labels: ['0', '2', '4', '6', '8', '10', '12', '14', '16', '18', '20', '22', '24'], 
             datasets: [{ 
-                label: '온도', 
+                label: '습도', 
                 backgroundColor: 'transparent', 
                 borderColor: 'Red', data: {{temp_data}}
                 }] 
@@ -83,7 +83,9 @@
             options: {} }); 
             </script> 
             
+
         </body> 
+
     <body>
         <p><br><br></p>
         <div class="jumbotron text-center">
@@ -114,12 +116,12 @@
                             <tbody>
                               {% for i in m_data %}
                                 <tr>
-                                  <th scope="row">{{i[6]}}</th>
-                                  <td>{{ i[1] }}</td>
-                                  <td>{{ i[2] }}</td>
-                                  <td>{{ i[3] }}</td>
-                                  <td>{{ i[4] }}</td>
-                                  <td>{{ i[5] }}</td>
+                                    <th scope="row">{{i[5]}}</th>
+                                    <td>{{ i[0] }}</td>
+                                    <td>{{ i[1] }}</td>
+                                    <td>{{ i[2] }}</td>
+                                    <td>{{ i[3] }}</td>
+                                    <td>{{ i[4] }}</td>
                                   
                                 </tr>
                             {% endfor %}

@@ -114,7 +114,7 @@ def monitor():
         data = cursor.fetchall()
         lux_data = []
         for i in range(len(data)):
-            lux_data.append(data[i][1])
+            lux_data.append(data[i][0])
         return render_template('monitor.html', m_data= data, lux_data=lux_data)
     else:
         return render_template('monitor.html')
@@ -130,7 +130,7 @@ def monitor1():
         data = cursor.fetchall()
         humid_data = []
         for i in range(len(data)):
-            humid_data.append(data[i][2])
+            humid_data.append(data[i][1])
         return render_template('monitor1.html', m_data= data,humid_data=humid_data)
     else:
         return render_template('monitor1.html')
@@ -147,8 +147,9 @@ def monitor2():
         data = cursor.fetchall()
         temp_data = []
         for i in range(len(data)):
-            temp_data.append(data[i][3])
-        return render_template('monitor2.html',m_data= data,temp_data=temp_data)
+            temp_data.append(data[i][2])
+        print(temp_data)
+        return render_template('monitor2.html',m_data= data, temp_data=temp_data)
     else:
         return render_template('monitor2.html')
 
